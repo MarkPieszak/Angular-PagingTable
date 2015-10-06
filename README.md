@@ -9,7 +9,7 @@ Created with server-side paging in mind - Extremely easy to use and lightweight 
 
 ### Include the directive:
 
-`<script src="evTable.directive.js"></script>`
+`<script src="ev-table.directive.js"></script>`
 
 ### Add evTable to your App module dependencies:
 
