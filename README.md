@@ -3,7 +3,7 @@ Designed with server-side paging in mind - Extremely easy to use and lightweight
 
 # Easy to use
 
-    <table ev-table="vmDemo.tableData">
+            <table ev-table="vmDemo.tableData">
 				<thead>
 					<tr>
 						<th ev-sort="Name">CancerName</th>
