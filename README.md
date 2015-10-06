@@ -48,7 +48,7 @@ All we need is to pass that tableData.
 			vm.tableData = new evTableParams({ 
 
 				pageSize 	 : 10, 		// [Optional] Defaults to 10
-				pageNumber	 : 1,  		// [Optional] Defaults to 1 : If for some reason you want to start on a page other than 1
+				pageNumber	 : 1,  		// [Optional] Defaults to 1 : If you want to start on a different page
 
 				serverPaging : true,
 
