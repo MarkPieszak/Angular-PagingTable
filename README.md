@@ -77,10 +77,11 @@ There are some other options you can utilize on Start-up such as Ordering or sta
 			// data === the current pages data or "collection"
 		},
 
-		pageSize 	 : 10,  	// [Optional] Defaults to 10
-		pageNumber	 : 1,   	// [Optional] Defaults to 1 : If you want to start on a different page
-		orderBy      : 'Name' 	// [Optional] Sort on page start
-		orderDirection : 'desc' // [Optional] Sort direction on page start
+		pageSize 	    : 10,  	      // [Optional] Defaults to 10
+		pageSizeOptions : [5,10,20],  // [Optional] Defaults to [10,20,50]
+		pageNumber	    : 1,   	      // [Optional] Defaults to 1 : If you want to start on a different page
+		orderBy         : 'Name'      // [Optional] Sort on page start
+		orderDirection  : 'desc'      // [Optional] Sort direction on page start
 	});
 		
 
