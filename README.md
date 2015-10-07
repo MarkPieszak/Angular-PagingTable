@@ -95,4 +95,10 @@ There are some other options you can utilize on Start-up such as Ordering or sta
 	OrderBy 
 	OrderDirection
 
-> TO DO : Add Dropdown to handle changing the PageSize
+
+# TO-DO List:
+
+> [x] ~~Add Dropdown to handle changing the PageSize~~
+> [ ] Retrieve correct totalCount coming from server
+> [ ] Add more styles
+> [ ] Add ability to disable pageSizeOptions
