@@ -93,11 +93,14 @@
 			}, {
 				name : 'Loopy',
 				age  : 55
-			}]
+			}];
 
 			vm.clientSideTableData = new evTableParams({
+				data : fakeData,
+
+				// [Optional]
 				pageSize : 5,
-				data : fakeData
+				pageSizeOptions : [5, 10, 20]
 			});
 
 			/*
@@ -109,7 +112,7 @@
 
 		}]);
 
-	</script
+	</script>
 
 
 </body>

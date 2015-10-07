@@ -54,7 +54,8 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 		transclude 		: true,
 		template 		: '<div ng-transclude></div>\
-			<div ev-paging="evTablePages"></div>',
+			<div ev-paging="evTablePages" class="ev-pagers"></div>\
+			<div ev-page-select="evTablePageOptions" class="ev-page-options"></div>',
 
 		controller 		: controllerFunction,
 		link 			: linkFunction
@@ -67,10 +68,14 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 		var server_paging = tableObject.serverPaging;
 		var tableParams = tableObject.params();
 
+		$scope.evTablePageOptions = tableObject.pageSizeOptions;
+
 		// Start everything up
 		HandlePaging();
 
 		$scope.changePage = function (pageNumber) {
+
+			tableParams = tableObject.params();
 
 			tableParams.PageNumber = parseInt(pageNumber, 10);
 
@@ -81,6 +86,8 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 			if (tableParams.PageNumber < 1) {
 				tableParams.PageNumber = tableObject.pages;
 			}
+
+			console.log(tableParams);
 
 			HandlePaging();
 		};
@@ -139,14 +146,20 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 					dataCopy = $filter('orderBy')(dataCopy, tableParams.OrderBy, direction);
 				}
 
+				console.log(tableParams);
+
 				var take = tableParams.PageSize;
 				var skip = tableParams.PageNumber > 1 
 					? (tableParams.PageNumber - 1) * tableParams.PageSize 
 					: 0;
 				
 				if (dataCopy.length >= totalCount) {
-					dataCopy = dataCopy.splice(skip, take);
+					
 				}
+
+				console.log(skip, take);
+
+				dataCopy = dataCopy.splice(skip, take);
 
 				var currentPageData = dataCopy;
 
@@ -193,6 +206,26 @@ evTableModule.directive('evPaging', function () {
 		template : templateString
 	};
 
+});
+
+evTableModule.directive('evPageSelect', function () {
+	return {
+		restrict : 'A',
+		template : '<select ng-model="pageSizeAmount" ng-change="changeSize()" ng-options="num as num for num in evTablePageOptions"></select>',
+		controller : controllerFunction
+	};
+
+	function controllerFunction ($scope) {
+
+		$scope.pageSizeAmount = $scope.evTable.pageSize;
+		
+		$scope.changeSize = function () {
+
+			$scope.evTable.pageSize = $scope.pageSizeAmount;
+			$scope.changePage(1);
+		};
+
+	}
 });
 
 evTableModule.directive('evSort', function () {
