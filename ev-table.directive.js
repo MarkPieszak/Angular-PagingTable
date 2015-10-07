@@ -74,6 +74,14 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 			tableParams.PageNumber = parseInt(pageNumber, 10);
 
+			if (tableParams.PageNumber > tableObject.pages) {
+				tableParams.PageNumber = 1;
+			}
+
+			if (tableParams.PageNumber < 1) {
+				tableParams.PageNumber = tableObject.pages;
+			}
+
 			HandlePaging();
 		};
 
@@ -100,6 +108,9 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 					var totalCount = 100; 
 					var pages = totalCount / tableObject.pageSize;
 
+					tableObject.totalCount = totalCount;
+					tableObject.pages = pages;
+
 					$scope.evTablePages = Array.apply(null, {length: pages}).map(Number.call, Number).splice(1);
 					$scope.currentPage = tableParams.PageNumber;
 					$scope.$parent.collection = response;
@@ -110,9 +121,15 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 				});
 			}
 			else {
+
 				// Static paging
 
 				var totalCount = tableObject.data.length;
+				var pages = parseInt(totalCount / tableObject.pageSize, 10) + 1;
+
+				tableObject.totalCount = totalCount;
+				tableObject.pages = pages;
+				
 				var dataCopy = angular.copy(tableObject.data);
 
 				// Sorting
@@ -122,7 +139,6 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 					dataCopy = $filter('orderBy')(dataCopy, tableParams.OrderBy, direction);
 				}
 
-				var pages = parseInt(totalCount / tableObject.pageSize, 10) + 1;
 				var take = tableParams.PageSize;
 				var skip = tableParams.PageNumber > 1 
 					? (tableParams.PageNumber - 1) * tableParams.PageSize 
@@ -165,9 +181,11 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 evTableModule.directive('evPaging', function () {
 
 	var templateString = '<ul class="ev-paging">\
+		<li ng-click="changePage(currentPage - 1)"><<</a>\
 		<li ng-repeat="page in evTablePages" ng-click="changePage(page)" ng-class="{ \'ev-current-page\' : page === currentPage }">\
 			{{ page }}\
 		</li>\
+		<li ng-click="changePage(currentPage + 1)">>></a>\
 		</ul>';
 
 	return {
