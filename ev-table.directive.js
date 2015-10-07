@@ -138,6 +138,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 				// Async Bind to table 
 				$timeout(function () {
 					$scope.$parent.collection = currentPageData;
+					tableObject.callback(currentPageData);
 				}, 0);
 
 			}

@@ -1,9 +1,7 @@
 # Angular-Table
 
 Designed to be extremely uninvasive, `ev-table` let's you sculpt tables exactly the way you want!
-Created with server-side paging in mind - Extremely easy to use and lightweight Angular table/grid (ngTable) directive.
-
- > Only server-side paging is functioning right now. I'll be updating the project to include client-side paging as well very soon.
+Created with server-side paging in mind (but works with static client-side paging as well) - Extremely easy to use and lightweight Angular table/grid (ngTable) directive.
 
 # Easy to use
 
@@ -42,27 +40,51 @@ Just make sure for the actual table you repeat through `collection` that is what
 
 All we need is to pass that tableData.
 
+
     APP.controller('DemoController', function (evTableParams) {
-			var vm = this;
-			
-			vm.tableData = new evTableParams({ 
 
-				pageSize 	 : 10, 		// [Optional] Defaults to 10
-				pageNumber	 : 1,  		// [Optional] Defaults to 1 : If you want to start on a different page
+		var vm = this;
+		
+		// Server-side Paging:
+		//////////////////////////////////
 
-				serverPaging : true,
+		vm.tableData = new evTableParams({ 
+			serverPaging : true,
+			ajaxUrl      : '/api/pagingdemo'
+		});
 
-				ajaxUrl      : 'http://localhost/rest/api/pagingdemo',
+		// Client-side Paging:
+		//////////////////////////////////
+		
+		vm.tableData = new evTableParams({ 
+			data         : [] // <-- your static Array of Objects
+		});
 
-				// [Optional] Incase you want to do something else everytime it finishes running AJAX
-				callback     : function (data) { 
-					
-				}
+	});
+		
+There are some other options you can utilize on Start-up such as Ordering or starting at a specific page.
 
-			});
+        vm.tableData = new evTableParams({ 
 
+			serverPaging : true,
+			ajaxUrl      : '/api/pagingdemo',
+
+			// OPTIONAL PARAMETERS BELOW ::
+			//////////////////////////////////////
+
+			// [Optional] Incase you want to do something else everytime it finishes running AJAX or static paging
+			callback     : function (data) { 
+				// data === the current pages data or "collection"
+			},
+
+			pageSize 	 : 10,  	// [Optional] Defaults to 10
+			pageNumber	 : 1,   	// [Optional] Defaults to 1 : If you want to start on a different page
+			orderBy      : 'Name' 	// [Optional] Sort on page start
+			orderDirection : 'desc' // [Optional] Sort direction on page start
 		});
 		
+
+			
 # That's it!
 
 > NOTE: For server-side paging, I'm passing an Object with these properties for you to handle your Take/Skips/Orders etc
