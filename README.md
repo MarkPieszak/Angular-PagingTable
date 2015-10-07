@@ -98,7 +98,7 @@ There are some other options you can utilize on Start-up such as Ordering or sta
 
 # TO-DO List:
 
-[x] ~~Add Dropdown to handle changing the PageSize~~
-[ ] Retrieve correct totalCount coming from server
-[ ] Add more styles
-[ ] Add ability to disable pageSizeOptions
+* ~~Add Dropdown to handle changing the PageSize~~
+* Retrieve correct totalCount coming from server
+* Add more styles
+* Add ability to disable pageSizeOptions
