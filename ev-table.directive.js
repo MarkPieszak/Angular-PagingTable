@@ -122,14 +122,13 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 					dataCopy = $filter('orderBy')(dataCopy, tableParams.OrderBy, direction);
 				}
 
-				var pages = totalCount / tableObject.pageSize + 1;
-
+				var pages = parseInt(totalCount / tableObject.pageSize, 10) + 1;
 				var take = tableParams.PageSize;
 				var skip = tableParams.PageNumber > 1 ? tableParams.PageNumber - 1 * tableParams.PageSize : 0;
 
-				$scope.evTablePages = Array.apply(null, {length: pages}).map(Number.call, Number).splice(1);
+				$scope.evTablePages = Array.apply(null, {length: pages + 1}).map(Number.call, Number).splice(1);
 				
-				if (dataCopy.length > totalCount) {
+				if (dataCopy.length >= totalCount) {
 					dataCopy = dataCopy.splice(skip, take);
 				}
 
