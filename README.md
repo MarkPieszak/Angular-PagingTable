@@ -20,20 +20,20 @@ In your View, make your `<table>` like usual! Simply add the `ev-table="{TableDa
 Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name.
 Just make sure for the actual table you repeat through `collection` that is what's passed up to your View to loop through.
 
-            <table ev-table="vmDemo.tableData">
-				<thead>
-					<tr>
-						<!-- Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name -->
-						<th ev-sort="Name">Name</th>
-						<th ev-sort="Age">Age</th>
-					</tr>
-				</thead>  
-				<!-- "collection" is required - data is passed to it -->
-				<tr ng-repeat="item in collection">
-					<td>{{ item.Name }}</td>
-					<td>{{ item.Age }}</td>
-				</tr>
-			</table>
+    <table ev-table="vmDemo.tableData">
+		<thead>
+			<tr>
+				<!-- Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name -->
+				<th ev-sort="Name">Name</th>
+				<th ev-sort="Age">Age</th>
+			</tr>
+		</thead>  
+		<!-- "collection" is required - data is passed to it -->
+		<tr ng-repeat="item in collection">
+			<td>{{ item.Name }}</td>
+			<td>{{ item.Age }}</td>
+		</tr>
+	</table>
 
 
 ### In the Controller
@@ -64,24 +64,24 @@ All we need is to pass that tableData.
 		
 There are some other options you can utilize on Start-up such as Ordering or starting at a specific page.
 
-        vm.tableData = new evTableParams({ 
+    vm.tableData = new evTableParams({ 
 
-			serverPaging : true,
-			ajaxUrl      : '/api/pagingdemo',
+		serverPaging : true,
+		ajaxUrl      : '/api/pagingdemo',
 
-			// OPTIONAL PARAMETERS BELOW ::
-			//////////////////////////////////////
+		// OPTIONAL PARAMETERS BELOW ::
+		//////////////////////////////////////
 
-			// [Optional] Incase you want to do something else everytime it finishes running AJAX or static paging
-			callback     : function (data) { 
-				// data === the current pages data or "collection"
-			},
+		// [Optional] Incase you want to do something else everytime it finishes running AJAX or static paging
+		callback     : function (data) { 
+			// data === the current pages data or "collection"
+		},
 
-			pageSize 	 : 10,  	// [Optional] Defaults to 10
-			pageNumber	 : 1,   	// [Optional] Defaults to 1 : If you want to start on a different page
-			orderBy      : 'Name' 	// [Optional] Sort on page start
-			orderDirection : 'desc' // [Optional] Sort direction on page start
-		});
+		pageSize 	 : 10,  	// [Optional] Defaults to 10
+		pageNumber	 : 1,   	// [Optional] Defaults to 1 : If you want to start on a different page
+		orderBy      : 'Name' 	// [Optional] Sort on page start
+		orderDirection : 'desc' // [Optional] Sort direction on page start
+	});
 		
 
 			
