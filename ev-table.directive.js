@@ -124,9 +124,9 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 				var pages = parseInt(totalCount / tableObject.pageSize, 10) + 1;
 				var take = tableParams.PageSize;
-				var skip = tableParams.PageNumber > 1 ? tableParams.PageNumber - 1 * tableParams.PageSize : 0;
-
-				$scope.evTablePages = Array.apply(null, {length: pages + 1}).map(Number.call, Number).splice(1);
+				var skip = tableParams.PageNumber > 1 
+					? (tableParams.PageNumber - 1) * tableParams.PageSize 
+					: 0;
 				
 				if (dataCopy.length >= totalCount) {
 					dataCopy = dataCopy.splice(skip, take);
@@ -134,8 +134,12 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 				var currentPageData = dataCopy;
 
+				$scope.evTablePages = Array.apply(null, {length: pages + 1}).map(Number.call, Number).splice(1);
+				$scope.currentPage = tableParams.PageNumber;
+
 				// Async Bind to table 
 				$timeout(function () {
+					$scope.currentPage - tableParams.PageNumber;
 					$scope.$parent.collection = currentPageData;
 					tableObject.callback(currentPageData);
 				}, 0);

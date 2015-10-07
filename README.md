@@ -93,3 +93,5 @@ There are some other options you can utilize on Start-up such as Ordering or sta
 	PageNumber 
 	OrderBy 
 	OrderDirection
+
+> TO DO : Add Dropdown to handle changing the PageSize

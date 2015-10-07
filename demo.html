@@ -3,10 +3,14 @@
 	<title>Angular-table Demo</title>
 
 	<style type="text/css">
-		table { }
-		table th { padding:15px 40px; background:#888; color:#fff;}
-		table td { padding: 10px;} 
+		table.ev-table { width:100%; }
+		table tr th { padding:15px 40px; background:#888; color:#fff;}
+		table tr td { padding: 10px 100px; } 
 		[ev-sort] { cursor:pointer; }
+		ul.ev-paging { overflow:hidden; }
+		ul.ev-paging li { float:left; padding:15px; margin:2px collor:#888; cursor:pointer;}
+		ul.ev-paging li:hover { background:#888;}
+		li.ev-current-page { background:#5279a4; color:#fff; }
 	</style>
 
 </head>
@@ -92,7 +96,7 @@
 			}]
 
 			vm.clientSideTableData = new evTableParams({
-				//pageSize : 1,
+				pageSize : 5,
 				data : fakeData
 			});
 
