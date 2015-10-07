@@ -42,7 +42,7 @@ evTableModule.factory('evTableParams', function () {
 
 });
 
-evTableModule.directive('evTable', function ($http) {
+evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 	return {
 
 		restrict		: 'A',
@@ -67,20 +67,14 @@ evTableModule.directive('evTable', function ($http) {
 		var server_paging = tableObject.serverPaging;
 		var tableParams = tableObject.params();
 
-
-		if (server_paging) {
-			handleServerPaging();
-		}
-		else {
-			// To Do: static paging
-			// Static paging
-		}
+		// Start everything up
+		HandlePaging();
 
 		$scope.changePage = function (pageNumber) {
 
 			tableParams.PageNumber = parseInt(pageNumber, 10);
 
-			handleServerPaging();
+			HandlePaging();
 		};
 
 		$scope.sort = function (column, direction) { 
@@ -89,30 +83,66 @@ evTableModule.directive('evTable', function ($http) {
 			tableParams.OrderDirection 	= direction || 'asc';
 			tableParams.PageNumber 		= 1; // Go back to the first page
 
-			handleServerPaging()
+			HandlePaging()
 		}
 
-		function handleServerPaging () {
+		function HandlePaging () {
 
-			var promise = $http({
-				method : 'GET',
-				url    : tableObject.ajaxUrl + '?' + $.param(tableParams || '')
-			});
+			if (server_paging) {
+				var promise = $http({
+					method : 'GET',
+					url    : tableObject.ajaxUrl + '?' + $.param(tableParams || '')
+				});
 
-			promise.success(function (response) {
+				promise.success(function (response) {
 
-				// TO DO : get from Server-side
-				var totalCount = 100; 
-				var pages = totalCount / tableObject.pageSize;
+					// TO DO : get from Server-side
+					var totalCount = 100; 
+					var pages = totalCount / tableObject.pageSize;
+
+					$scope.evTablePages = Array.apply(null, {length: pages}).map(Number.call, Number).splice(1);
+					$scope.currentPage = tableParams.PageNumber;
+					$scope.$parent.collection = response;
+
+					// Pass the response back to the Calling controller (if they passed it in)
+					tableObject.callback(response);
+
+				});
+			}
+			else {
+				// Static paging
+
+				var totalCount = tableObject.data.length;
+				var dataCopy = angular.copy(tableObject.data);
+
+				// Sorting
+				if (tableParams.OrderBy) {
+					var direction = tableParams.OrderDirection === 'asc' ? '' : 'reverse';
+
+					dataCopy = $filter('orderBy')(dataCopy, tableParams.OrderBy, direction);
+				}
+
+				var pages = totalCount / tableObject.pageSize + 1;
+
+				var take = tableParams.PageSize;
+				var skip = tableParams.PageNumber > 1 ? tableParams.PageNumber - 1 * tableParams.PageSize : 0;
 
 				$scope.evTablePages = Array.apply(null, {length: pages}).map(Number.call, Number).splice(1);
-				$scope.currentPage = tableParams.PageNumber;
-				$scope.$parent.collection = response;
+				
+				if (dataCopy.length > totalCount) {
+					dataCopy = dataCopy.splice(skip, take);
+				}
 
-				// Pass the response back to the Calling controller (if they passed it in)
-				tableObject.callback(response);
+				var currentPageData = dataCopy;
 
-			});
+				// Async Bind to table 
+				$timeout(function () {
+					$scope.$parent.collection = currentPageData;
+				}, 0);
+
+			}
+
+			
 	  	}
 
 	}

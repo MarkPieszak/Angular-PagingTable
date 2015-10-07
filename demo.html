@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title>Angular-table Demo</title>
+
+	<style type="text/css">
+		table { }
+		table th { padding:15px 40px; background:#888; color:#fff;}
+		table td { padding: 10px;} 
+		[ev-sort] { cursor:pointer; }
+	</style>
+
+</head>
+
+<body>
+
+	<div ng-app="app">
+
+		<div ng-controller="TableController as vmTable">
+
+			<table ev-table="vmTable.clientSideTableData">
+				<thead>
+					<tr>
+						<th ev-sort="name">Name</th>
+						<th ev-sort="age">Age</th>
+					</tr>
+				</thead>
+
+				<tr ng-repeat="item in collection">
+					<td>{{ item.name }}</td>
+					<td>{{ item.age }}</td>
+				</tr>
+			</table>
+
+		</div>
+
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="ev-table.directive.js"></script>
+
+	<script>
+		'use strict';
+
+		var APP = angular.module('app', ['evTable']);
+
+		APP.controller('TableController', ['evTableParams', function (evTableParams) {
+
+			var vm = this;
+
+			var fakeData = [{
+				name : 'John',
+				age  : 50
+			}, {
+				name : 'Jane',
+				age  : 40
+			},
+			{
+				name : 'Ted',
+				age  : 35
+			}, {
+				name : 'Xander',
+				age  : 38
+			}]
+
+			vm.clientSideTableData = new evTableParams({
+				//pageSize : 1,
+				data : fakeData
+			});
+
+			/*
+			vm.serverSideTableData = new evTableParams({
+				serverPaging: true,
+				ajaxUrl : ''
+			});
+			*/
+
+		}]);
+
+	</script
+
+
+</body>
+</html>
