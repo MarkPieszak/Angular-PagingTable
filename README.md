@@ -17,8 +17,7 @@ Created with server-side paging in mind (but works with static client-side pagin
 # Directive in action:
 
 In your View, make your `<table>` like usual! Simply add the `ev-table="{TableDataFromController"` attribute directive!
-Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name.
-Just make sure for the actual table you repeat through `collection` that is what's passed up to your View to loop through.
+Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name. You can ng-repeat through `collection` for the remaining rows, that is what's passed up to your View to loop through.
 
     <table ev-table="vmDemo.tableData">
 		<thead>
@@ -38,7 +37,7 @@ Just make sure for the actual table you repeat through `collection` that is what
 
 ### In the Controller
 
-All we need is to pass that tableData.
+All we need is to pass that tableData. Which is a factory object called evTableParams.
 
 
     APP.controller('DemoController', function (evTableParams) {
