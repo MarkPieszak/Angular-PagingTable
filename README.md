@@ -88,7 +88,7 @@ There are some other options you can utilize on Start-up such as Ordering or sta
 			
 # That's it!
 
-> NOTE: For server-side paging, I'm passing an Object with these properties for you to handle your Take/Skips/Orders etc
+> NOTE: For server-side paging, I'm passing an Object with these properties for you to handle your Take/Skips/Orders etc. They are found within the factory in the JS file if you want them to match your back-end.
 
 	PageSize 
 	PageNumber 
