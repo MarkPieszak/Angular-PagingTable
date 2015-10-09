@@ -8,23 +8,23 @@ evTableModule.factory('evTableParams', function () {
 
 		var tableOptions = {
 
-			pageNumber     		  	: tableOptions.pageNumber 				|| 1,
-			pageSize       			: tableOptions.pageSize 				|| 10,
-			orderBy 	   			: tableOptions.orderBy 					|| '',
+			pageNumber     		  	: tableOptions.pageNumber 			|| 1,
+			pageSize       			: tableOptions.pageSize 			|| 10,
+			orderBy 	   		: tableOptions.orderBy 			        || '',
 			orderDirection 			: tableOptions.orderDirection			|| '',
 
 			pageSizeOptions 	   	: tableOptions.pageSizeOptions 			|| [10, 25, 50],
-			disablePageSizeOptions 	: tableOptions.disablePageSizeOptions 	|| false,
+			disablePageSizeOptions    	: tableOptions.disablePageSizeOptions 	        || false,
 
 			// AJAX
 			serverPaging 			: tableOptions.serverPaging 			|| false,
-			getData		 			: tableOptions.getData 					|| function () { },
+			getData		 		: tableOptions.getData 				|| function () { },
 
-			ajaxUrl  				: tableOptions.ajaxUrl					|| '',
-			callback 				: tableOptions.callback					|| function () { },
+			ajaxUrl  			: tableOptions.ajaxUrl				|| '',
+			callback 			: tableOptions.callback				|| function () { },
 
 			// STATIC - To Do
-			data 					: tableOptions.data 					|| [],
+			data 				: tableOptions.data 				|| [],
 
 			// Parameter Object for the Server-side
 			params : function () {
@@ -32,7 +32,7 @@ evTableModule.factory('evTableParams', function () {
 					PageSize 		: tableOptions.pageSize,
 					PageNumber 		: tableOptions.pageNumber,
 					OrderBy 		: tableOptions.orderBy,
-					OrderDirection  : tableOptions.orderDirection
+					OrderDirection          : tableOptions.orderDirection
 				}
 			}
 		};
@@ -49,7 +49,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 		scope : {
 			evTable 	: '=',
-			collection  : '='
+			collection.     : '='
 		},
 
 		transclude 		: true,
