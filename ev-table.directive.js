@@ -113,13 +113,13 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 					// TO DO : get from Server-side
 					var totalCount = 100; 
-					var pages = totalCount / tableObject.pageSize;
+					var pages.     = totalCount / tableObject.pageSize;
 
 					tableObject.totalCount = totalCount;
-					tableObject.pages = pages;
+					tableObject.pages      = pages;
 
 					$scope.evTablePages = Array.apply(null, {length: pages}).map(Number.call, Number).splice(1);
-					$scope.currentPage = tableParams.PageNumber;
+					$scope.currentPage        = tableParams.PageNumber;
 					$scope.$parent.collection = response;
 
 					// Pass the response back to the Calling controller (if they passed it in)
@@ -132,10 +132,10 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 				// Static paging
 
 				var totalCount = tableObject.data.length;
-				var pages = parseInt(totalCount / tableObject.pageSize, 10) + 1;
+				var pages      = parseInt(totalCount / tableObject.pageSize, 10) + 1;
 
 				tableObject.totalCount = totalCount;
-				tableObject.pages = pages;
+				tableObject.pages      = pages;
 				
 				var dataCopy = angular.copy(tableObject.data);
 
