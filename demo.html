@@ -95,19 +95,26 @@
 				age  : 55
 			}];
 
-                        // client side static data demo
-			vm.clientSideTableData = new evTableParams({
-				data : fakeData,
 
-				// [Optional]
+                        // client side static data demo
+
+			vm.clientSideTableData = new evTableParams({
+
+				data : fakeData, // < that's it!
+
+				// [Optional] Here for demo purposes
 				pageSize : 5,
 				pageSizeOptions : [5, 10, 20]
 			});
 
+                        // server side paging
+
 			/*
 			vm.serverSideTableData = new evTableParams({
-				serverPaging: true,
-				ajaxUrl : ''
+
+				serverPaging : true,
+				ajaxUrl.     : '' //
+
 			});
 			*/
 
