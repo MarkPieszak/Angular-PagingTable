@@ -1,7 +1,7 @@
 # Angular-Table
 
 Designed to be extremely uninvasive, `ev-table` let's you sculpt tables exactly the way you want!
-Created with server-side paging in mind (but works with static client-side paging as well) - Extremely easy to use and lightweight Angular table/grid (ngTable) directive.
+Created with server-side paging in mind, since it's always the most hassle (but of course works with static client-side paging as well) - Extremely easy to use and lightweight Angular table/grid (ngTable) directive.
 
 # Easy to use
 
