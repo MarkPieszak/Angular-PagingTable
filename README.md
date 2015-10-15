@@ -1,5 +1,23 @@
 # Angular-Table
 
+## As easy as:
+
+    <table ev-table="vmDemo.tableData">
+		<thead>
+			<tr>
+				<th ev-sort="Name">Name</th>
+				<th ev-sort="Age">Age</th>
+			</tr>
+		</thead>  
+		<tr ng-repeat="item in collection">
+			<td>{{ item.Name }}</td>
+			<td>{{ item.Age }}</td>
+		</tr>
+	</table>
+	
+    <!-- Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name -->
+    <!-- "collection" is required - data is passed to it -->
+
 Designed to be extremely uninvasive, `ev-table` let's you sculpt tables exactly the way you want!
 Created with server-side paging in mind, since it's always the most hassle (but of course works with static client-side paging as well) - Extremely easy to use and lightweight Angular table/grid (ngTable) directive.
 
@@ -20,21 +38,7 @@ In your View, make your `<table>` like usual! Simply add the `ev-table="{TableDa
 Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name. You can ng-repeat through `collection` for the remaining rows, that is what's passed up to your View to loop through.
 
 
-    <!-- Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name -->
-    <!-- "collection" is required - data is passed to it -->
-
-    <table ev-table="vmDemo.tableData">
-		<thead>
-			<tr>
-				<th ev-sort="Name">Name</th>
-				<th ev-sort="Age">Age</th>
-			</tr>
-		</thead>  
-		<tr ng-repeat="item in collection">
-			<td>{{ item.Name }}</td>
-			<td>{{ item.Age }}</td>
-		</tr>
-	</table>
+    
 
 
 ### In the Controller
