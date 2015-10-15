@@ -1,11 +1,9 @@
-# Angular-Table
-
-## As easy as:
+# Angular Tables with paging as easy as:
 
     <table ev-table="vmDemo.tableData">
 		<thead>
 			<tr>
-				<th ev-sort="Name">Name</th>
+				<th ev-sort="Name">Name</th> <!-- ev-sort is optional -->
 				<th ev-sort="Age">Age</th>
 			</tr>
 		</thead>  
