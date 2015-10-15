@@ -13,8 +13,9 @@
 		</tr>
 	</table>
 	
-    <!-- Sorting is as easy as adding ev-sort on a your Header & providing the server-side column name -->
-    <!-- "collection" is required - data is passed to it -->
+> SORTING is as easy as adding ev-sort on a your Header & providing the server-side column name 
+
+> LOOPING DATA : "collection" is required - data is passed to it. Do whatever you like with it!
 
 Designed to be extremely uninvasive, `ev-table` let's you sculpt tables exactly the way you want!
 Created with server-side paging in mind, since it's always the most hassle (but of course works with static client-side paging as well) - Extremely easy to use and lightweight Angular table/grid (ngTable) directive.
