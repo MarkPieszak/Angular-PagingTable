@@ -8,31 +8,31 @@ evTableModule.factory('evTableParams', function () {
 
 		var tableOptions = {
 
-			pageNumber     		  	: tableOptions.pageNumber 			|| 1,
-			pageSize       			: tableOptions.pageSize 			|| 10,
-			orderBy 	   		: tableOptions.orderBy 			        || '',
+			pageNumber     		  	: tableOptions.pageNumber				|| 1,
+			pageSize       			: tableOptions.pageSize					|| 10,
+			orderBy					: tableOptions.orderBy					|| '',
 			orderDirection 			: tableOptions.orderDirection			|| '',
 
-			pageSizeOptions 	   	: tableOptions.pageSizeOptions 			|| [10, 25, 50],
-			disablePageSizeOptions    	: tableOptions.disablePageSizeOptions 	        || false,
+			pageSizeOptions 	   	: tableOptions.pageSizeOptions			|| [10, 25, 50],
+			disablePageSizeOptions	: tableOptions.disablePageSizeOptions	|| false,
 
 			// AJAX
-			serverPaging 			: tableOptions.serverPaging 			|| false,
-			getData		 		: tableOptions.getData 				|| function () { },
+			serverPaging			: tableOptions.serverPaging				|| false,
+			getData					: tableOptions.getData 					|| function () { },
 
-			ajaxUrl  			: tableOptions.ajaxUrl				|| '',
-			callback 			: tableOptions.callback				|| function () { },
+			ajaxUrl					: tableOptions.ajaxUrl					|| '',
+			callback				: tableOptions.callback					|| function () { },
 
 			// STATIC - To Do
-			data 				: tableOptions.data 				|| [],
+			data					: tableOptions.data						|| [],
 
 			// Parameter Object for the Server-side
 			params : function () {
 				return {
-					PageSize 		: tableOptions.pageSize,
-					PageNumber 		: tableOptions.pageNumber,
-					OrderBy 		: tableOptions.orderBy,
-					OrderDirection          : tableOptions.orderDirection
+					PageSize		: tableOptions.pageSize,
+					PageNumber		: tableOptions.pageNumber,
+					OrderBy			: tableOptions.orderBy,
+					OrderDirection	: tableOptions.orderDirection
 				}
 			}
 		};
@@ -48,25 +48,25 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 		restrict		: 'A',
 
 		scope : {
-			evTable 	: '=',
-			collection.     : '='
+			evTable		: '=',
+			collection	: '='
 		},
 
-		transclude 		: true,
-		template 		: '<div ng-transclude></div>\
+		transclude		: true,
+		template		: '<div ng-transclude></div>\
 			<div ev-paging="evTablePages" class="ev-pagers"></div>\
 			<div ev-page-select="evTablePageOptions" class="ev-page-options"></div>',
 
-		controller 		: controllerFunction,
-		link 			: linkFunction
+		controller		: controllerFunction,
+		link			: linkFunction
 
 	};
 
 	function controllerFunction ($scope) {
 
-		var tableObject = $scope.evTable;
-		var server_paging = tableObject.serverPaging;
-		var tableParams = tableObject.params();
+		var tableObject 	= $scope.evTable;
+		var server_paging 	= tableObject.serverPaging;
+		var tableParams 	= tableObject.params();
 
 		$scope.evTablePageOptions = tableObject.pageSizeOptions;
 
@@ -92,7 +92,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 			HandlePaging();
 		};
 
-		$scope.sort = function (column, direction) { 
+		$scope.sort = function (column, direction) {
 
 			tableParams.OrderBy 		= column;
 			tableParams.OrderDirection 	= direction || 'asc';
@@ -112,7 +112,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 				promise.success(function (response) {
 
 					// TO DO : get from Server-side
-					var totalCount = 100; 
+					var totalCount = 100;
 					var pages.     = totalCount / tableObject.pageSize;
 
 					tableObject.totalCount = totalCount;
@@ -136,7 +136,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 				tableObject.totalCount = totalCount;
 				tableObject.pages      = pages;
-				
+
 				var dataCopy = angular.copy(tableObject.data);
 
 				// Sorting
@@ -149,12 +149,12 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 				console.log(tableParams);
 
 				var take = tableParams.PageSize;
-				var skip = tableParams.PageNumber > 1 
-					? (tableParams.PageNumber - 1) * tableParams.PageSize 
+				var skip = tableParams.PageNumber > 1
+					? (tableParams.PageNumber - 1) * tableParams.PageSize
 					: 0;
-				
+
 				if (dataCopy.length >= totalCount) {
-					
+
 				}
 
 				console.log(skip, take);
@@ -166,7 +166,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 				$scope.evTablePages = Array.apply(null, {length: pages + 1}).map(Number.call, Number).splice(1);
 				$scope.currentPage = tableParams.PageNumber;
 
-				// Async Bind to table 
+				// Async Bind to table
 				$timeout(function () {
 					$scope.currentPage - tableParams.PageNumber;
 					$scope.$parent.collection = currentPageData;
@@ -175,7 +175,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 			}
 
-			
+
 	  	}
 
 	}
@@ -188,7 +188,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 	}
 
-	
+
 });
 
 evTableModule.directive('evPaging', function () {
@@ -218,7 +218,7 @@ evTableModule.directive('evPageSelect', function () {
 	function controllerFunction ($scope) {
 
 		$scope.pageSizeAmount = $scope.evTable.pageSize;
-		
+
 		$scope.changeSize = function () {
 
 			$scope.evTable.pageSize = $scope.pageSizeAmount;
@@ -253,10 +253,10 @@ evTableModule.directive('evSort', function () {
 				$scope.sort($attrs.evSort, $attrs.evDirection);
 
 				// Flip the direction
-				$attrs.evDirection = $attrs.evDirection === 'asc' 
-					? 'desc' 
+				$attrs.evDirection = $attrs.evDirection === 'asc'
+					? 'desc'
 					: 'asc';
-			});  
+			});
 
 		};
     }
