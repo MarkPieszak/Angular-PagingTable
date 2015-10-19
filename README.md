@@ -102,9 +102,10 @@ There are some other options you can utilize on Start-up such as Ordering or sta
 
 # TO-DO List:
 
-* ~~Add Dropdown to handle changing the PageSize~~
-* ~~Add Previous/Next arrow buttons~~
+* Show example implementing bootstraps styles?
 * Test for multiple evTable useage
 * Retrieve correct totalCount coming from server
 * Add more styles
 * Add ability to disable pageSizeOptions
+* ~~Add Dropdown to handle changing the PageSize~~
+* ~~Add Previous/Next arrow buttons~~
