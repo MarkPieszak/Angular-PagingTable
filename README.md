@@ -26,7 +26,7 @@ Created with server-side paging in mind, since it's always the most hassle (but 
 
 `<script src="ev-table.directive.js"></script>`
 
-### Add evTable to your App module dependencies:
+### Add evTable to your App module dependencies: (or rename the module to your own to omit this)
 
 `var APP = angular.module('app', ['evTable']);`
 
