@@ -113,7 +113,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 
 					// TO DO : get from Server-side
 					var totalCount = 100;
-					var pages.     = totalCount / tableObject.pageSize;
+					var pages      = totalCount / tableObject.pageSize;
 
 					tableObject.totalCount = totalCount;
 					tableObject.pages      = pages;
