@@ -22,7 +22,7 @@ Created with server-side paging in mind, since it's always the most hassle (but 
 
 # Easy to use
 
-### Include the directive:
+### Include the directive: (Or add it within your own file)
 
 `<script src="ev-table.directive.js"></script>`
 
