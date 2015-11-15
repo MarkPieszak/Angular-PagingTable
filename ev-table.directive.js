@@ -43,6 +43,7 @@ evTableModule.factory('evTableParams', function () {
 });
 
 evTableModule.directive('evTable', function ($http, $filter, $timeout) {
+
 	return {
 
 		restrict		: 'A',
