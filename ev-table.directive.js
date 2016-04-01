@@ -88,7 +88,7 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 				tableParams.PageNumber = tableObject.pages;
 			}
 
-			console.log(tableParams);
+			//console.log(tableParams);
 
 			HandlePaging();
 		};
@@ -131,7 +131,6 @@ evTableModule.directive('evTable', function ($http, $filter, $timeout) {
 			else {
 
 				// Static paging
-
 				var totalCount = tableObject.data.length;
 				var pages      = parseInt(totalCount / tableObject.pageSize, 10) + 1;
 
