@@ -1,4 +1,4 @@
-# Angular Tables with paging as easy as:
+# Angular 1.* Tables with paging as easy as:
 
     <table ev-table="vmDemo.tableData">
 		<thead>
